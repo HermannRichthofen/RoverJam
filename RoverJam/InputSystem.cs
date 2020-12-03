@@ -13,6 +13,8 @@ namespace RoverJam
 
         public InputSystem()
         {
+            EndOfInput = false;
+
             InputValues = new InputSet();
 
             CurrentInputType = InputType.GridSize;
