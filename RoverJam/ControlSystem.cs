@@ -15,10 +15,10 @@ namespace RoverJam
         {
             OnStart();
 
-            var inputSystem = RunInputSystem();
+            var inputValues = RunInputSystem();
 
-            CreateVirtualMap(inputSystem.InputValues.GridInput);
-            DeployRovers(inputSystem.InputValues.RoverInput);
+            CreateGridForPlateau(inputValues.GridInput);
+            DeployRovers(inputValues.RoverInput);
 
             RunRovers(DeployedRovers);
 
@@ -38,7 +38,7 @@ namespace RoverJam
             Console.WriteLine("Initializing RoverJam Mars Rover Control System..." + Environment.NewLine);
         }
 
-        private static InputSystem RunInputSystem()
+        private static InputSet RunInputSystem()
         {
             var inputSystem = new InputSystem();
 
@@ -47,10 +47,10 @@ namespace RoverJam
                 inputSystem.AskForInput();
             }
 
-            return inputSystem;
+            return inputSystem.InputValues;
         }
 
-        private static void CreateVirtualMap(Tuple<int, int> gridInput)
+        private static void CreateGridForPlateau(Tuple<int, int> gridInput)
         {
             MaxXCoordinate = gridInput.Item1;
             MaxYCoordinate = gridInput.Item2;
@@ -70,10 +70,7 @@ namespace RoverJam
         {
             Console.WriteLine(Environment.NewLine);
 
-            foreach (var rover in rovers)
-            {
-                rover.Run();
-            }
+            rovers.ForEach(rover => rover.Run());
         }
     }
 }

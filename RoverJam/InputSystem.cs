@@ -35,6 +35,16 @@ namespace RoverJam
             CommitInput();
         }
 
+        #endregion
+
+        #region Private Members
+
+        private InputType CurrentInputType;
+
+        private string CurrentInput;
+
+        private int CurrentRover = 0;
+
         private bool IsGoCommand()
         {
             if (CurrentInput == "GO")
@@ -95,16 +105,6 @@ namespace RoverJam
                     break;
             }
         }
-
-        #endregion
-
-        #region Private Members
-
-        private InputType CurrentInputType;
-
-        private string CurrentInput;
-
-        private int CurrentRover = 0;
 
         private void GetInput()
         {
