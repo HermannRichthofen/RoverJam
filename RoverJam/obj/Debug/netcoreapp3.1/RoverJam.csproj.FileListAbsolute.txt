@@ -1,0 +1,13 @@
+C:\Users\mert.karaca\source\repos\RoverJam\RoverJam\bin\Debug\netcoreapp3.1\RoverJam.exe
+C:\Users\mert.karaca\source\repos\RoverJam\RoverJam\bin\Debug\netcoreapp3.1\RoverJam.deps.json
+C:\Users\mert.karaca\source\repos\RoverJam\RoverJam\bin\Debug\netcoreapp3.1\RoverJam.runtimeconfig.json
+C:\Users\mert.karaca\source\repos\RoverJam\RoverJam\bin\Debug\netcoreapp3.1\RoverJam.runtimeconfig.dev.json
+C:\Users\mert.karaca\source\repos\RoverJam\RoverJam\bin\Debug\netcoreapp3.1\RoverJam.dll
+C:\Users\mert.karaca\source\repos\RoverJam\RoverJam\bin\Debug\netcoreapp3.1\RoverJam.pdb
+C:\Users\mert.karaca\source\repos\RoverJam\RoverJam\obj\Debug\netcoreapp3.1\RoverJam.csprojAssemblyReference.cache
+C:\Users\mert.karaca\source\repos\RoverJam\RoverJam\obj\Debug\netcoreapp3.1\RoverJam.AssemblyInfoInputs.cache
+C:\Users\mert.karaca\source\repos\RoverJam\RoverJam\obj\Debug\netcoreapp3.1\RoverJam.AssemblyInfo.cs
+C:\Users\mert.karaca\source\repos\RoverJam\RoverJam\obj\Debug\netcoreapp3.1\RoverJam.csproj.CoreCompileInputs.cache
+C:\Users\mert.karaca\source\repos\RoverJam\RoverJam\obj\Debug\netcoreapp3.1\RoverJam.dll
+C:\Users\mert.karaca\source\repos\RoverJam\RoverJam\obj\Debug\netcoreapp3.1\RoverJam.pdb
+C:\Users\mert.karaca\source\repos\RoverJam\RoverJam\obj\Debug\netcoreapp3.1\RoverJam.genruntimeconfig.cache
