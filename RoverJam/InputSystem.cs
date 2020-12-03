@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace RoverJam
 {
@@ -27,7 +26,7 @@ namespace RoverJam
 
                 GetInput();
 
-                if (IsBreakCommand())
+                if (IsGoCommand())
                 {
                     break;
                 }
@@ -36,7 +35,7 @@ namespace RoverJam
             CommitInput();
         }
 
-        private bool IsBreakCommand()
+        private bool IsGoCommand()
         {
             if (CurrentInput == "GO")
             {
@@ -67,6 +66,13 @@ namespace RoverJam
 
         private void CommitInput()
         {
+            if (CurrentInput == "GO")
+            {
+                EndOfInput = true;
+
+                return;
+            }
+
             switch (CurrentInputType)
             {
                 case InputType.GridSize:
@@ -74,8 +80,16 @@ namespace RoverJam
                     CurrentInputType = InputType.RoverPosition;
                     break;
                 case InputType.RoverPosition:
+                    CurrentRover++;
+                    InputValues.RoverInput.Add(new RoverInput(CurrentRover,
+                        int.Parse(CurrentInput.Split(' ')[0]),
+                        int.Parse(CurrentInput.Split(' ')[1]),
+                        CurrentInput.Split(' ')[2].ToCharArray()[0]));
+                    CurrentInputType = InputType.RoverCommands;
                     break;
                 case InputType.RoverCommands:
+                    InputValues.RoverInput.Single(roverInput => roverInput.RoverNumber == CurrentRover).Commands = CurrentInput.ToCharArray();
+                    CurrentInputType = InputType.RoverPosition;
                     break;
                 default:
                     break;
@@ -89,6 +103,8 @@ namespace RoverJam
         private InputType CurrentInputType;
 
         private string CurrentInput;
+
+        private int CurrentRover = 0;
 
         private void GetInput()
         {
@@ -127,10 +143,10 @@ namespace RoverJam
         {
             if (CurrentInput.All(character => new[] { 'M', 'L', 'R' }.Contains(character)))
             {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
         }
 
         private bool RunValidationForRoverPositionInput()
@@ -185,24 +201,24 @@ namespace RoverJam
             switch (CurrentInputType)
             {
                 case InputType.GridSize:
-                    Console.WriteLine("Please, enter the grid parameters." +
-                        "Grid parameters are max-x axis and max-y axis integers with a single white space between them. (Ex: 5 5)");
-                    Console.Write("Grid Parameters:");
+                    Console.WriteLine("Please, enter the grid parameters." + Environment.NewLine +
+                        "Grid parameters are max-x axis and max-y axis integers with a single white space between them. (Ex: 5 5)" + Environment.NewLine);
                     break;
                 case InputType.RoverPosition:
-                    Console.WriteLine("Please, enter the starting positon of the rover." +
-                        "The position will be an x-y coordinate pair with an uppercase direction letter." +
-                        "Please, leave a single white space between each parameter. (Ex: 3 1 N)");
-                    Console.Write("Grid Parameters:");
+                    Console.WriteLine(Environment.NewLine + "Please, enter the starting positon of the rover." + Environment.NewLine +
+                        "The position will be an x-y coordinate pair with an uppercase direction letter." + Environment.NewLine +
+                        "Leave a single white space between each parameter. (Ex: 1 2 N, 3 3 E)" + Environment.NewLine);
                     break;
                 case InputType.RoverCommands:
-                    Console.WriteLine("Please, enter the commands to be executed by the rover." +
-                        "The commands are uppercase L or R or M letters. You should not leave any spece between them." +
-                        "(Ex: RLLRMMRLMR)");
+                    Console.WriteLine(Environment.NewLine + "Please, enter the commands to be executed by the rover." +
+                        "The commands are uppercase L or R or M letters." + Environment.NewLine + 
+                        "You should not leave any spece between them. (Ex: LMLMLMLMM, MMRMMRMRRM)" + Environment.NewLine);
                     break;
                 default:
                     break;
             }
+
+            Console.Write("RoverJam @ MARS-Sector49: ");
         }
 
         private enum InputType

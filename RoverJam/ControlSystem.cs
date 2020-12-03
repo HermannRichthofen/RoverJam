@@ -5,9 +5,9 @@ namespace RoverJam
 {
     public static class ControlSystem
     {
-        public static int MaxXAxis { get; private set; }
+        public static int MaxXCoordinate { get; private set; }
 
-        public static int MaxYAxis { get; private set; }
+        public static int MaxYCoordinate { get; private set; }
 
         private static List<Rover> DeployedRovers;
 
@@ -27,14 +27,15 @@ namespace RoverJam
 
         private static void OnExit()
         {
-            Console.WriteLine("The operation is done. Press any key to exit...");
+            Console.Write(Environment.NewLine);
+            Console.WriteLine("All rovers successfully reported. End of operations...");
+            Console.WriteLine("Press any key to exit RoverJam system.");
             Console.ReadLine();
         }
 
         public static void OnStart()
         {
-            Console.WriteLine("Initializing RoverJam Mars Rover Control System...");
-            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("Initializing RoverJam Mars Rover Control System..." + Environment.NewLine);
         }
 
         private static InputSystem RunInputSystem()
@@ -51,22 +52,24 @@ namespace RoverJam
 
         private static void CreateVirtualMap(Tuple<int, int> gridInput)
         {
-            MaxXAxis = gridInput.Item1;
-            MaxYAxis = gridInput.Item2;
+            MaxXCoordinate = gridInput.Item1;
+            MaxYCoordinate = gridInput.Item2;
         }
 
-        public static void DeployRovers(List<Tuple<int, int, char, char[]>> roverInput)
+        public static void DeployRovers(List<RoverInput> roverInput)
         {
             DeployedRovers = new List<Rover>();
 
             foreach (var input in roverInput)
             {
-                DeployedRovers.Add(new Rover(input.Item1, input.Item2, input.Item3, input.Item4));
+                DeployedRovers.Add(new Rover(input.XPosition, input.YPosition, input.Direction, input.Commands, input.RoverNumber));
             }
         }
 
         public static void RunRovers(List<Rover> rovers)
         {
+            Console.WriteLine(Environment.NewLine);
+
             foreach (var rover in rovers)
             {
                 rover.Run();

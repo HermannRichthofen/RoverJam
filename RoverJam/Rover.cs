@@ -12,12 +12,15 @@ namespace RoverJam
 
         private readonly char[] Commands;
 
-        public Rover(int xAxis, int yAxis, char direction, char[] commands)
+        private readonly int RoverNumber;
+
+        public Rover(int xAxis, int yAxis, char direction, char[] commands, int roverNumber)
         {
             XAxis = xAxis;
             YAxis = yAxis;
             Direction = direction;
             Commands = commands;
+            RoverNumber = roverNumber;
         }
 
         public void Run()
@@ -83,7 +86,7 @@ namespace RoverJam
                 }
             }
 
-            Console.WriteLine($"{XAxis} {YAxis} {Direction}");
+            Console.WriteLine($"Rover Number#{RoverNumber} Reporting: {XAxis} {YAxis} {Direction}");
         }
     }
 }
