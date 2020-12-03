@@ -115,7 +115,7 @@ namespace RoverJam
 
                     goto default;
                 case 'W':
-                    if (PositionOnYAxis - 1 > 0)
+                    if (PositionOnXAxis - 1 > 0)
                     {
                         PositionOnXAxis--;
 
